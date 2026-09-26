@@ -1,0 +1,51 @@
+# Go binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Build output
+/bin/
+/build/
+/dist/
+
+# Go workspace
+go.work
+go.work.sum
+
+# Dependency/vendor directory (uncomment if you don't want to commit vendor)
+/vendor/
+
+# Environment variables
+.env
+.env.*
+
+# IDE/editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Coverage
+coverage.out
+coverage.html
+
+# Temporary files
+tmp/
+temp/
+
+# Database
+storage
+
+# Config
+config
