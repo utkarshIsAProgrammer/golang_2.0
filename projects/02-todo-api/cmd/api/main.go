@@ -10,6 +10,7 @@ import (
 )
 
 func main() {
+	// loading the configuration
 	var cfg *config.Config
 	var err error
 	cfg, err = config.Load()
@@ -17,11 +18,14 @@ func main() {
 		log.Fatal("Failed to load configuration: ", err)
 	}
 
+	// connecting to the PostgreSQL database
 	var pool *pgxpool.Pool
 	pool, err = database.Connect(cfg.DatabseURL)
 	if err != nil {
 		log.Fatal("Failed to connect to the PostgreSQL database!", err)
 	}
+
+	// closing the connection pool
 	defer pool.Close()
 
 	// gin instance
