@@ -24,4 +24,9 @@ func main() {
 	fmt.Println(ApplicationName)
 	fmt.Println(MaxLoginAttempts)
 	fmt.Println(ApplicationVersion)
+
+	productPrice := 499.99
+	quantity := 3
+	totalPrice := productPrice * float64(quantity)
+	fmt.Println(totalPrice)
 }
