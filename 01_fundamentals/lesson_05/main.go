@@ -63,6 +63,15 @@ func login(username, password string, isBlocked bool) (string, error) {
 	return "Login Successful!", nil
 }
 
+func counter() func() int {
+	count := 0
+
+	return func() int {
+		count++
+		return count
+	}
+}
+
 func main() {
 	a := add(9, 7)
 	b := subtract(9, 7)
@@ -105,4 +114,11 @@ func main() {
 	} else {
 		fmt.Println(message)
 	}
+
+	myCounter := counter()
+
+	fmt.Println("Counter:", myCounter())
+	fmt.Println("Counter:", myCounter())
+	fmt.Println("Counter:", myCounter())
+	fmt.Println("Counter:", myCounter())
 }
