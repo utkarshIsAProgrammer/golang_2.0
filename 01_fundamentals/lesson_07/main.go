@@ -12,11 +12,6 @@ type Product struct {
 	Price float64
 }
 
-type StudentData struct {
-	Subject string
-	Marks   int
-}
-
 type User struct {
 	ID    int
 	Name  string
@@ -84,41 +79,6 @@ func main() {
 
 	fmt.Println("\nWord count:", sol)
 
-	marks := map[string]StudentData{
-		"Jane": {
-			Subject: "Math",
-			Marks:   54,
-		},
-		"John": {
-			Subject: "English",
-			Marks:   42,
-		},
-	}
-
-	marks["David"] = StudentData{
-		Subject: "Science",
-		Marks:   78,
-	}
-
-	fmt.Println("\nDavid's subject:", marks["David"].Subject)
-	fmt.Println("David's marks:", marks["David"].Marks)
-
-	john := marks["John"]
-	john.Marks = 90
-	marks["John"] = john
-
-	fmt.Println("Updated John's marks:", marks["John"].Marks)
-
-	alice, exists := marks["Alice"]
-
-	if exists {
-		fmt.Println("Alice:", alice)
-	} else {
-		fmt.Println("Alice not found")
-	}
-
-	fmt.Println("Total students in marks map:", len(marks))
-
 	users := map[int]User{
 		1: {ID: 1, Name: "Alex", Email: "alex@example.com", Age: 21},
 		2: {ID: 2, Name: "Peter", Email: "peter@example.com", Age: 22},
@@ -131,5 +91,45 @@ func main() {
 		fmt.Println("\nUser found:", user)
 	} else {
 		fmt.Println("\nUser not found")
+	}
+
+	marks := map[string]map[string]int{
+		"Jane": {
+			"Math": 54,
+			"Go":   90,
+		},
+		"John": {
+			"English": 42,
+			"Go":      85,
+		},
+	}
+
+	fmt.Println("\nJane's Math marks:", marks["Jane"]["Math"])
+
+	marks["David"] = make(map[string]int)
+
+	marks["David"]["Science"] = 78
+	marks["David"]["Go"] = 88
+
+	marks["Jane"]["Science"] = 95
+
+	marks["John"]["English"] = 90
+
+	studentMarks, exists := marks["Alice"]
+
+	if exists {
+		fmt.Println("Alice's marks:", studentMarks)
+	} else {
+		fmt.Println("Student not found")
+	}
+
+	fmt.Println("\nAll student marks:")
+
+	for student, subjects := range marks {
+		fmt.Println("\nStudent:", student)
+
+		for subject, score := range subjects {
+			fmt.Println(subject, ":", score)
+		}
 	}
 }
