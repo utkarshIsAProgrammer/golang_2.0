@@ -46,4 +46,54 @@ func main() {
 	}
 
 	fmt.Println(recoveredUser.Name)
+
+	user1 := User{
+		ID:    1,
+		Name:  "User1",
+		Email: "userone@gmail.com",
+	}
+
+	user2 := User{
+		ID:    2,
+		Name:  "User2",
+		Email: "usertwo@gmail.com",
+	}
+
+	user3 := User{
+		ID:    3,
+		Name:  "User3",
+		Email: "userthree@gmail.com",
+	}
+
+	users := []User{user1, user2, user3}
+	newUsers, err := json.Marshal(users)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+
+	err = os.WriteFile(`newUsers.json`, newUsers, 0644)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+
+	content, err = os.ReadFile(`newUsers.json`)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+
+	fmt.Println(string(content))
+
+	newUsersSlice := []User{}
+	err = json.Unmarshal(content, &newUsersSlice)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+
+	for _, value := range newUsersSlice {
+		fmt.Println(value)
+	}
 }
