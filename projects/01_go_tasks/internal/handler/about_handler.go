@@ -14,7 +14,6 @@ type AboutResponse struct {
 
 func AboutHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
 
 	response := AboutResponse{
 		Name:        "Go tasks",
@@ -23,7 +22,7 @@ func AboutHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if err := json.NewEncoder(w).Encode(response); err != nil {
-		log.Fatal(err, "Error in the about handler")
+		log.Printf("Error in the about handler %v", err)
 		return
 	}
 }

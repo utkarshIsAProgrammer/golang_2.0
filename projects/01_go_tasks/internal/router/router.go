@@ -13,5 +13,4 @@ func New() *http.ServeMux {
 	mux.HandleFunc("GET /about", handler.AboutHandler)
 
 	return mux
-
 }
